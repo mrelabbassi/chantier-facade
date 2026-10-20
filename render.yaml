@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: chantier-facade
+    runtime: node
+    plan: starter
+    # --include=dev : Vite et Tailwind sont nécessaires au build, même si NODE_ENV=production
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /readyz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_NAME
+        value: Administrateur
+      - key: SEED_DEMO
+        value: "false"
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
