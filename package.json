@@ -10,7 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "start": "node server/index.js",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "create-admin": "node scripts/create-admin.mjs"
   },
   "dependencies": {
     "express": "^5.1.0",

@@ -325,7 +325,8 @@ export function seed() {
   const email = (process.env.ADMIN_EMAIL ?? '').trim().toLowerCase();
   const password = process.env.ADMIN_PASSWORD ?? '';
   if (!email || password.length < 10) {
-    console.warn('Aucun utilisateur : définissez ADMIN_EMAIL et ADMIN_PASSWORD (10 caractères minimum) pour créer le premier administrateur.');
+    const missing = [!email && 'ADMIN_EMAIL', password.length < 10 && 'ADMIN_PASSWORD (10 caractères minimum)'].filter(Boolean).join(', ');
+    console.warn(`Aucun utilisateur. Variables absentes ou invalides au démarrage : ${missing}. Voir README (création manuelle avec npm run create-admin).`);
     return;
   }
   db.prepare('INSERT INTO users (id, name, email, password_hash, role, fonction, phone, equipe) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')

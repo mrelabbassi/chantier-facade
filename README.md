@@ -35,6 +35,16 @@ Connexion par email et mot de passe. Le navigateur reçoit un cookie de session 
 
 Les comptes sont créés par un administrateur dans la page **Utilisateurs**, qui permet aussi de changer les rôles et de réinitialiser un mot de passe.
 
+## Créer l'administrateur manuellement
+
+Si les variables `ADMIN_EMAIL` et `ADMIN_PASSWORD` n'ont pas été prises en compte au démarrage, créez le compte depuis le Shell de Render :
+
+```bash
+npm run create-admin -- votre@email.ma "votre-mot-de-passe-10-caracteres" "Votre Nom"
+```
+
+Si l'email existe déjà, le compte devient administrateur et son mot de passe est remplacé.
+
 ## Déploiement sur Render
 
 1. Poussez le dépôt sur GitHub.
